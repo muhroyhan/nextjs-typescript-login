@@ -1,12 +1,21 @@
 {
   "name": "nextjs-typescript-login",
+  "description": "Basic Login with next js and typescript",
   "version": "0.1.0",
   "private": true,
+  "license" : "MIT",
+  "homepage": "https://github.com/muhroyhan/nextjs-typescript-login#readme",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "pnpm": ">=7.13.0",
+    "yarn": "please-use-pnpm",
+    "npm": "please-use-pnpm"
   },
   "dependencies": {
     "@types/node": "18.11.9",
