@@ -1,8 +1,8 @@
 import { useContext } from 'react'
-import Context from '../../utils/context'
-import UserTable from './UserTable'
+import Context from '../utils/context'
+import Layout from './Layout'
 
-const UserTableContainer = (props: any) => {
+const LayoutContainer = (props: any) => {
     const reducer: any = useContext(Context)
 
     const propStates = {
@@ -12,7 +12,7 @@ const UserTableContainer = (props: any) => {
         users: reducer.user.users,
     }
 
-    return <UserTable {...propStates} />
+    return <Layout {...propStates} />
 }
 
-export default UserTableContainer
+export default LayoutContainer
