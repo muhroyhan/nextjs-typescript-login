@@ -1,5 +1,14 @@
 import { Button, Input, Spacer, styled } from '@nextui-org/react'
-import { useRef } from 'react'
+import { useEffect } from 'react'
+import Form from '../Form'
+interface LoginProps {
+    createUser: Function
+    getUsers: Function
+    login: Function
+    isActionLoading: boolean
+    isActionSuccess: boolean
+    isActionError: boolean
+}
 
 const { Password } = Input
 
@@ -7,38 +16,51 @@ const StyledButton = styled(Button, {
     width: '100% !important',
 })
 
-const Login = () => {
-    const usernameRef = useRef<HTMLInputElement>(null)
-    const passwordRef = useRef<HTMLInputElement>(null)
+const Login = (props: LoginProps) => {
+    const {
+        createUser,
+        getUsers,
+        isActionLoading,
+        isActionSuccess,
+        isActionError,
+    } = props
 
-    const handleSubmit = () => {
-        console.log(usernameRef.current?.value)
-        console.log(passwordRef.current?.value)
+    useEffect(() => {
+        console.log('isActionLoading', 'isActionSuccess', 'isActionError')
+        console.log(isActionLoading, isActionSuccess, isActionError)
+    }, [isActionLoading, isActionSuccess, isActionError])
+
+    const handleSubmit = async (values: object) => {
+        console.log(values)
+        await createUser(values)
+        return getUsers()
     }
 
     return (
-        <form
-            onSubmit={(e) => {
-                e.preventDefault()
-                handleSubmit()
-            }}
-        >
+        <Form onSubmit={handleSubmit}>
             <Input
+                name="email"
+                width="100%"
+                label="Email"
+                placeholder="Email"
+            />
+            <Spacer y={1} />
+            <Input
+                name="name"
                 width="100%"
                 label="Username"
-                ref={usernameRef}
                 placeholder="Username"
             />
             <Spacer y={1} />
             <Password
+                name="password"
                 width="100%"
                 label="Password"
-                ref={passwordRef}
                 placeholder="Password"
             />
             <Spacer y={1} />
-            <StyledButton type="submit">Sign In</StyledButton>
-        </form>
+            <StyledButton type="submit">Sign Up</StyledButton>
+        </Form>
     )
 }
 

@@ -8,7 +8,7 @@ interface UserTableProps {
 }
 
 const UserTable = (props: UserTableProps) => {
-    const { getUsers, isLoading, users } = props
+    const { getUsers, isLoading, users = [] } = props
     const { Header, Body, Column, Row, Cell } = Table
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const UserTable = (props: UserTableProps) => {
     if (isLoading) {
         return <Loading />
     }
-
+    console.log(users)
     return (
         <Table>
             <Header>
@@ -30,9 +30,9 @@ const UserTable = (props: UserTableProps) => {
             <Body>
                 {users.map((user) => {
                     return (
-                        <Row key={user._id}>
-                            <Cell>{user._id}</Cell>
-                            <Cell>{user.username}</Cell>
+                        <Row key={user.id}>
+                            <Cell>{user.id}</Cell>
+                            <Cell>{user.name}</Cell>
                             <Cell>{user.password}</Cell>
                         </Row>
                     )

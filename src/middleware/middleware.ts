@@ -1,8 +1,8 @@
-import superagent, { Response } from 'superagent'
+import superagent, { SuperAgentRequest } from 'superagent'
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL + '/api'
 
-const get = (path: String, query = {}) => {
+const get = (path: String, query: object = {}) => {
     const url = baseUrl + path
     return superagent
         .get(url)
@@ -12,7 +12,7 @@ const get = (path: String, query = {}) => {
         .type('application/json')
         .query(query)
 }
-const post = (path: String, data = {}) => {
+const post = (path: String, data: object = {}) => {
     const url = baseUrl + path
     return superagent
         .post(url)
@@ -22,14 +22,18 @@ const post = (path: String, data = {}) => {
         .send(data)
 }
 
-export const middleware = async (path: String, type: String = 'get') => {
-    let fetchData: Response = await get(path)
-
+export const middleware = async (
+    path: String,
+    type: String = 'get',
+    payload: object = {}
+) => {
+    let request: SuperAgentRequest = get(path, payload)
     if (type === 'post') {
-        fetchData = await post(path)
+        request = post(path, payload)
     }
-    const data = await fetchData.body
-    return data
+    const fetch = await request
+    console.log(fetch.body)
+    return fetch.body
 }
 
 export const config = {

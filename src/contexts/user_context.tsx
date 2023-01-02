@@ -14,7 +14,17 @@ const UserContextState = () => {
         dispatch(await userAction.getUsers())
     }
 
-    return { user: { ...state, getUsers } }
+    const createUser = async (data: object) => {
+        dispatch({ type: ACTION_TYPES.USERS.request, data: {} })
+        dispatch(await userAction.createUser(data))
+    }
+
+    const login = async (data: object) => {
+        dispatch({ type: ACTION_TYPES.LOGIN.request, data: {} })
+        dispatch(await userAction.login(data))
+    }
+
+    return { user: { ...state, createUser, getUsers, login } }
 }
 
 export default UserContextState
