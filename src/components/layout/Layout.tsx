@@ -1,7 +1,7 @@
 import { Container, Spacer, styled } from '@nextui-org/react'
 import Head from 'next/head'
 import { Fragment } from 'react'
-import LoginContainer from '../login/LoginContainer'
+import SignUpContainer from '../sign_up/SignUpContainer'
 import UserTableContainer from '../user_table/UserTableContainer'
 
 const StyledContainer = styled(Container, {
@@ -17,7 +17,7 @@ const Layout = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <StyledContainer>
-                <LoginContainer />
+                <SignUpContainer />
                 <Spacer y={1} />
                 <UserTableContainer />
             </StyledContainer>

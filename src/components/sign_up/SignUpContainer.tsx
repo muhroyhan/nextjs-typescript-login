@@ -1,21 +1,20 @@
 import { useContext } from 'react'
 import Context from '../../utils/context'
-import Login from './Login'
+import SignUp from './SignUp'
 
-const LoginContainer = (props: any) => {
+const SignUpContainer = (props: any) => {
     const reducer: any = useContext(Context)
 
     const propStates = {
         ...props,
         createUser: reducer.user.createUser,
         getUsers: reducer.user.getUsers,
-        login: reducer.user.login,
         isActionLoading: reducer.user.isActionLoading,
         isActionSuccess: reducer.user.isActionSuccess,
         isActionError: reducer.user.isActionError,
     }
 
-    return <Login {...propStates} />
+    return <SignUp {...propStates} />
 }
 
-export default LoginContainer
+export default SignUpContainer

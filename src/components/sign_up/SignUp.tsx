@@ -1,10 +1,10 @@
 import { Button, Input, Spacer, styled } from '@nextui-org/react'
 import { useEffect } from 'react'
 import Form from '../Form'
-interface LoginProps {
+
+interface SignUpProps {
     createUser: Function
     getUsers: Function
-    login: Function
     isActionLoading: boolean
     isActionSuccess: boolean
     isActionError: boolean
@@ -16,7 +16,7 @@ const StyledButton = styled(Button, {
     width: '100% !important',
 })
 
-const Login = (props: LoginProps) => {
+const SignUp = (props: SignUpProps) => {
     const {
         createUser,
         getUsers,
@@ -31,7 +31,6 @@ const Login = (props: LoginProps) => {
     }, [isActionLoading, isActionSuccess, isActionError])
 
     const handleSubmit = async (values: object) => {
-        console.log(values)
         await createUser(values)
         return getUsers()
     }
@@ -64,4 +63,4 @@ const Login = (props: LoginProps) => {
     )
 }
 
-export default Login
+export default SignUp
