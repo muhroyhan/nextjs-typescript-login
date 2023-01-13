@@ -19,7 +19,7 @@ const UserTable = (props: UserTableProps) => {
     if (isLoading) {
         return <Loading />
     }
-    console.log(users)
+
     return (
         <Table>
             <Header>

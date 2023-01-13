@@ -1,14 +1,26 @@
-import { Container, Spacer, styled } from '@nextui-org/react'
+import { Container, Navbar, Spacer } from '@nextui-org/react'
 import Head from 'next/head'
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
+import LoginContainer from '../login/LoginContainer'
 import SignUpContainer from '../sign_up/SignUpContainer'
 import UserTableContainer from '../user_table/UserTableContainer'
 
-const StyledContainer = styled(Container, {
-    width: '50%',
-})
+interface TabIdentifier {
+    signUp: string
+    login: string
+}
+
+const tabValues: TabIdentifier = {
+    signUp: 'signup',
+    login: 'login',
+}
 
 const Layout = () => {
+    const [tabActive, setTabActive] = useState(tabValues.login)
+
+    const isSignupPage = tabActive === tabValues.signUp
+    const isLoginPage = tabActive === tabValues.login
+
     return (
         <Fragment>
             <Head>
@@ -16,11 +28,32 @@ const Layout = () => {
                 <meta name="description" content="Muhroyhan NextJs Project" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <StyledContainer>
-                <SignUpContainer />
+            <Container xs>
+                <Navbar css={{ borderRadius: '20px' }}>
+                    <Navbar.Content css={{ borderRadius: '20px' }}>
+                        <Navbar.Item
+                            isActive={isSignupPage}
+                            onClick={() => setTabActive(tabValues.signUp)}
+                            css={{ borderRadius: '20px', cursor: 'pointer' }}
+                        >
+                            Sign Up
+                        </Navbar.Item>
+                    </Navbar.Content>
+                    <Navbar.Content css={{ borderRadius: '20px' }}>
+                        <Navbar.Item
+                            isActive={isLoginPage}
+                            onClick={() => setTabActive(tabValues.login)}
+                            css={{ borderRadius: '20px', cursor: 'pointer' }}
+                        >
+                            Login
+                        </Navbar.Item>
+                    </Navbar.Content>
+                </Navbar>
+                {isSignupPage && <SignUpContainer />}
+                {isLoginPage && <LoginContainer />}
                 <Spacer y={1} />
                 <UserTableContainer />
-            </StyledContainer>
+            </Container>
         </Fragment>
     )
 }

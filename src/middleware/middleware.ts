@@ -32,7 +32,6 @@ export const middleware = async (
         request = post(path, payload)
     }
     const fetch = await request
-    console.log(fetch.body)
     return fetch.body
 }
 
